@@ -1,9 +1,9 @@
 {
-    "name": "aadb2c",
+    "name": "aadb2c-fork",
     "displayName": "Azure AD B2C fork",
     "description": "Azure AD B2C custom policy extension forked",
-    "version": "1.3.4",
-    "publisher": "chboudry",
+    "version": "1.3.5",
+    "publisher": "AIClub",
     "engines": {
         "vscode": "^1.30.0"
     },
