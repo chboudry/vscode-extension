@@ -7,7 +7,7 @@ Pretty much the same thing except I wanted to expand features to manage branch.
 
 **The issue:** You define external IDP in the code as technical profile..... but then alls IDP are in all environnements, what if you wanted to use some IDP only in dev ? 
 
-**The fix:** This version of the extension manage list in appsettings.json
+**The fix:** This version of the extension allows to use list in appsettings.json
 
 # Azure AD B2C extension
 

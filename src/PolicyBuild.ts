@@ -106,6 +106,9 @@ export default class PolicBuild {
                                 fs.mkdirSync(environmentsRootPath);
                             }
 
+                            // Define the regex pattern
+                            const regexPattern = /\{Settings:map:(\w+):([^:]+):([^}]+)\}/g;
+
                             // Iterate through environments  
                             appSettings.Environments.forEach(function (entry) {
 
@@ -141,6 +144,24 @@ export default class PolicBuild {
                                         Object.keys(entry.PolicySettings).forEach(key => {
                                             policContent = policContent.replace(new RegExp("\{Settings:" + key + "\}", "gi"), entry.PolicySettings[key]);
                                         });
+
+                                        // fork 
+                                        //{Settings:map:IDPSettings:<InputParameter Id="(0)" DataType="string" Value="true"/>:Id}
+                                        //{Settings:map:IDPSettings:<ClaimsProviderSelection TargetClaimsExchangeId="(0)" />:displayName}
+                                        //{Settings:map:IDPSettings:<ClaimsExchange Id="(0)" TechnicalProfileReferenceId="(1)" />:displayName:technicalProfileID}
+
+                                        // Apply regex to find and replace the specified syntax
+                                        policContent = policContent.replace(regexPattern, (match, listName, text, args) => {
+                                            vscode.window.showInformationMessage(entry.PolicySettings.map[listName]);
+                                            const list = entry.PolicySettings.map[listName];
+                                            if (Array.isArray(list)) {
+                                                return list.map(item => {
+                                                    let result = text;
+                                                    result = result.replace(/\(0\)/g, item[args]);
+                                                    return result;
+                                                }).join('\n');
+                                            }
+                                        });                                     
 
                                         // Check to see if the policy's subdirectory exists.
                                         if (file.SubFolder) {
@@ -249,4 +270,4 @@ export class PolicyFile {
         return subFolder;
     }
 
-} 
+}

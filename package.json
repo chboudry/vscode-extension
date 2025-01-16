@@ -3,7 +3,7 @@
     "displayName": "Azure AD B2C fork",
     "description": "Azure AD B2C custom policy extension forked",
     "version": "1.3.4",
-    "publisher": "AI Club",
+    "publisher": "chboudry",
     "engines": {
         "vscode": "^1.30.0"
     },
@@ -17,7 +17,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/azure-ad-b2c/vscode-extension.git"
+        "url": "https://github.com/chboudry/vscode-extension"
     },
     "activationEvents": [
         "*",
