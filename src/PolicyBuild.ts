@@ -152,12 +152,17 @@ export default class PolicBuild {
 
                                         // Apply regex to find and replace the specified syntax
                                         policContent = policContent.replace(regexPattern, (match, listName, text, args) => {
-                                            vscode.window.showInformationMessage(entry.PolicySettings.map[listName]);
                                             const list = entry.PolicySettings.map[listName];
+                                            const argList = args.split(',');
+                                            vscode.window.showInformationMessage(argList);
+                                            
                                             if (Array.isArray(list)) {
                                                 return list.map(item => {
                                                     let result = text;
-                                                    result = result.replace(/\(0\)/g, item[args]);
+                                                    for (let i = 0; i < argList.length; i++) {
+                                                        const arg = argList[i].trim();
+                                                        result = result.replace(new RegExp(`\\(${i}\\)`, 'g'), item[arg]);
+                                                    }
                                                     return result;
                                                 }).join('\n');
                                             }

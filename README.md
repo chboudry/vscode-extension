@@ -1,13 +1,45 @@
 # Fork of Azure AD B2C extension
 
 This a fork from https://github.com/azure-ad-b2c/vscode-extension
-Pretty much the same thing except I wanted to expand features to manage branch. 
+
+Pretty much the same thing except I wanted to add feature to expand environments specificities.
 
 **The context:** You have one code that build 3 envs using the default extension
 
-**The issue:** You define external IDP in the code as technical profile..... but then alls IDP are in all environnements, what if you wanted to use some IDP only in dev ? 
+**The issue:** Let's say you need to define external IDPs in the code as technical profile... Then alls IDP will be in all environnements, What if you wanted to use some IDPs only in dev, and some only in prod ? 
 
 **The fix:** This version of the extension allows to use list in appsettings.json
+
+**How it works:**
+in your xml files, use the following syntax up to 9 args:
+```
+{Settings:map:MylistName:<InputParameter Id="(0)" DataType="string" Value="true"/>:arg0,arg1...}
+```
+
+MylistName, arg name can be freely set
+
+in app settings.json : 
+```
+"PolicySettings" : {
+  .
+  .
+  .
+  "map":{
+    "mylistname": [
+      {
+          "arg0":"value0",
+          "arg1":"value1",
+          "arg2":"value2"
+      },
+      {
+          "arg0":"value00",
+          "arg1":"value01",
+          "arg2":"value02"
+      },
+      .
+      .
+      .
+```
 
 # Azure AD B2C extension
 
