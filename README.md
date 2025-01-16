@@ -1,3 +1,14 @@
+# Fork of Azure AD B2C extension
+
+This a fork from https://github.com/azure-ad-b2c/vscode-extension
+Pretty much the same thing except I wanted to expand features to manage branch. 
+
+**The context:** You have one code that build 3 envs using the default extension
+
+**The issue:** You define external IDP in the code as technical profile..... but then alls IDP are in all environnements, what if you wanted to use some IDP only in dev ? 
+
+**The fix:** This version of the extension manage list in appsettings.json
+
 # Azure AD B2C extension
 
 The Azure AD B2C extension for VS Code lets you quickly navigate through Azure AD B2C [custom policies](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-overview-custom). Create elements like technical profiles and claim definitions. For more information, see [Get started with custom policies](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-get-started-custom).

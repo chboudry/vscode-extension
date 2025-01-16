@@ -18,6 +18,8 @@ import PolicyUpload from './PolicyUpload';
 import B2CArtifacts from './B2CArtifacts';
 import RenumberStepsSinglePolicy from './RenumberStepsSinglePolicy';
 
+
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -26,6 +28,13 @@ export function activate(context: vscode.ExtensionContext) {
     // This line of code will only be executed once when your extension is activated
     console.log('Congratulations, your extension "aadb2c" is now active!');
 
+    const disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
+        // The code you place here will be executed every time your command is executed
+    
+        // Display a message box to the user
+        vscode.window.showInformationMessage('Hello World!');
+    });
+    
     //Demo: Custom Policy Explorer
     const customPolicyExplorerProvider = new CustomPolicyExplorerProvider();
     vscode.window.registerTreeDataProvider('CustomPolicyExplorer', customPolicyExplorerProvider);
@@ -39,7 +48,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('ApplicationInsightsExplorer.refresh', () => applicationInsightsExplorerProvider.refresh());
     vscode.commands.registerCommand('ApplicationInsightsExplorer.show', range => applicationInsightsExplorerProvider.show(range));
     vscode.commands.registerCommand('ApplicationInsightsExplorer.settings', range => applicationInsightsExplorerProvider.settings());
-
+    
     // Register find all reference
     context.subscriptions.push(
         vscode.languages.registerReferenceProvider(
@@ -51,6 +60,9 @@ export function activate(context: vscode.ExtensionContext) {
             { language: 'xml', scheme: 'file', pattern: '**/*xml*' }
         ],
             new GoDefinitionProvider()));
+    
+    //test
+    context.subscriptions.push(disposable);
 
     // Register find all references
     context.subscriptions.push(
